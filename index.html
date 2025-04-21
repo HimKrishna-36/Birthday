@@ -2,654 +2,656 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Magical Birthday Celebration</title>
- <style>
- * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- font-family: 'Pacifico', cursive;
- }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Birthday Celebration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pacifico', cursive;
+        }
 
- body {
- background: linear-gradient(45deg, #ffb6c1, #dda0dd, #87cefa);
- overflow-x: hidden;
- position: relative;
- /* Needed for absolute positioning of children */
- }
+        body {
+            background: linear-gradient(45deg, #ffb6c1, #dda0dd, #87cefa);
+            overflow-x: hidden;
+            position: relative;
+            /* Needed for absolute positioning of children */
+        }
 
- .glitter-bg {
- position: fixed;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- /* Using multiple radial gradients for a denser glitter effect */
- background-image:
- radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1px),
- radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1px),
- radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1px),
- radial-gradient(circle at 30% 90%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1px);
- background-size: 50px 50px;
- /* Control density */
- animation: glitter 1.5s infinite alternate;
- z-index: -1;
- /* Ensure it's behind content */
- pointer-events: none;
- /* Prevent interaction */
- }
+        .glitter-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Using multiple radial gradients for a denser glitter effect */
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1px),
+                radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1px),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1px),
+                radial-gradient(circle at 30% 90%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1px);
+            background-size: 50px 50px;
+            /* Control density */
+            animation: glitter 1.5s infinite alternate;
+            z-index: -1;
+            /* Ensure it's behind content */
+            pointer-events: none;
+            /* Prevent interaction */
+        }
 
- @keyframes glitter {
- 0% {
- opacity: 0.4;
- transform: scale(1);
- }
+        @keyframes glitter {
+            0% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
 
- 100% {
- opacity: 0.8;
- transform: scale(1.05);
- }
- }
+            100% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
 
- .bubble {
- position: absolute;
- background: rgba(255, 255, 255, 0.1);
- border-radius: 50%;
- animation: float 8s infinite ease-in-out;
- /* Smoother animation */
- box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
- /* Inner glow */
- z-index: 1;
- /* Above glitter, below sections potentially */
- }
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            /* Smoother animation */
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+            /* Inner glow */
+            z-index: 1;
+            /* Above glitter, below sections potentially */
+        }
 
- /* Initial heart placed in HTML */
- .heart {
- position: fixed;
- width: 2px;
- height: 2px;
- bottom: 200px;
- animation: float 6s infinite ease-in-out;
- /* Smoother animation */
- opacity: 0.7;
- z-index: 1;
- /* Styles for dynamically created hearts will be similar via JS */
- }
+        /* Initial heart placed in HTML */
+        .heart {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            bottom: 200px;
+            animation: float 6s infinite ease-in-out;
+            /* Smoother animation */
+            opacity: 0.7;
+            z-index: 1;
+            /* Styles for dynamically created hearts will be similar via JS */
+        }
 
- @keyframes float {
- 0%,
- 100% {
- transform: translateY(0) rotate(0deg) scale(1);
- }
+        @keyframes float {
 
- 50% {
- transform: translateY(-80px) rotate(10deg) scale(1.1);
- }
- /* Adjusted movement */
- }
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
 
- header {
- min-height: 100vh;
- /* Use min-height to ensure visibility */
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
- text-align: center;
- padding: 20px;
- opacity: 0;
- animation: fadeIn 2s forwards;
- position: relative;
- /* Ensure header content is above background elements */
- z-index: 10;
- }
+            50% {
+                transform: translateY(-80px) rotate(10deg) scale(1.1);
+            }
 
- @keyframes fadeIn {
- to {
- opacity: 1;
- }
- }
+            /* Adjusted movement */
+        }
 
- h1 {
- font-size: clamp(2.5rem, 6vw, 4rem);
- /* Responsive font size */
- color: white;
- text-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
- /* Slightly softer shadow */
- margin-bottom: 1.5rem;
- }
+        header {
+            min-height: 100vh;
+            /* Use min-height to ensure visibility */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            position: relative;
+            /* Ensure header content is above background elements */
+            z-index: 10;
+        }
 
- h3 {
- font-size: clamp(1rem, 3vw, 1.2rem);
- /* Responsive font size */
- color: rgba(0, 0, 0, 0.9);
- margin-bottom: 2rem;
- font-weight: normal;
- /* Pacifico is already decorative */
- }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
 
- .btn-glow {
- background: linear-gradient(45deg, #ff69b4, #ff85c8);
- /* Adjusted gradient */
- padding: 15px 40px;
- border: none;
- border-radius: 50px;
- /* More rounded */
- color: white;
- font-size: clamp(1.2rem, 4vw, 1.5rem);
- /* Responsive font size */
- cursor: pointer;
- transition: all 0.3s ease;
- /* Smooth transition */
- box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
- font-family: 'Arial', sans-serif;
- /* Use a clearer font for button */
- font-weight: bold;
- letter-spacing: 1px;
- }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            /* Responsive font size */
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+            /* Slightly softer shadow */
+            margin-bottom: 1.5rem;
+        }
 
- .btn-glow:hover {
- transform: scale(1.05) translateY(-2px);
- /* Subtle lift */
- box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
- }
+        h3 {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            /* Responsive font size */
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 2rem;
+            font-weight: normal;
+            /* Pacifico is already decorative */
+        }
 
- .btn-glow:active {
- transform: scale(1.02) translateY(0);
- /* Press down effect */
- box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
- }
+        .btn-glow {
+            background: linear-gradient(45deg, #ff69b4, #ff85c8);
+            /* Adjusted gradient */
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            /* More rounded */
+            color: white;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            /* Responsive font size */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Smooth transition */
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+            font-family: 'Arial', sans-serif;
+            /* Use a clearer font for button */
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
- .wave-divider {
- position: absolute;
- bottom: -1px;
- /* Ensure it covers the bottom edge */
- left: 0;
- width: 100%;
- overflow: hidden;
- line-height: 0;
- z-index: 5;
- /* Above background, below content */
- }
+        .btn-glow:hover {
+            transform: scale(1.05) translateY(-2px);
+            /* Subtle lift */
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
+        }
 
- .wave-divider svg {
- position: relative;
- display: block;
- width: calc(100% + 1.3px);
- height: 150px;
- /* Adjust height as needed */
- fill: rgba(255, 255, 255, 0.2);
- }
+        .btn-glow:active {
+            transform: scale(1.02) translateY(0);
+            /* Press down effect */
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+        }
 
- /* Sections Styling */
- section {
- min-height: 100vh;
- padding: 120px 20px 80px;
- /* More padding top/bottom */
- position: relative;
- opacity: 0;
- transform: translateY(50px);
- transition: opacity 1s ease-out, transform 1s ease-out;
- /* Subtle backdrop blur - use with caution for performance */
- /* backdrop-filter: blur(3px); */
- z-index: 2;
- /* Ensure sections are above background elements */
- }
+        .wave-divider {
+            position: absolute;
+            bottom: -1px;
+            /* Ensure it covers the bottom edge */
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 5;
+            /* Above background, below content */
+        }
 
- section.visible {
- opacity: 1;
- transform: translateY(0);
- }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+            /* Adjust height as needed */
+            fill: rgba(255, 255, 255, 0.2);
+        }
 
- .section-content {
- max-width: 800px;
- /* Slightly narrower for better readability */
- margin: 0 auto;
- background: rgba(255, 255, 255, 0.18);
- /* Slightly more opaque */
- padding: 40px;
- border-radius: 25px;
- /* Consistent rounding */
- box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
- /* Softer shadow */
- color: #333;
- /* Darker text for readability */
- font-family: 'Arial', sans-serif;
- /* Standard font for content */
- }
+        /* Sections Styling */
+        section {
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            /* More padding top/bottom */
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            /* Subtle backdrop blur - use with caution for performance */
+            /* backdrop-filter: blur(3px); */
+            z-index: 2;
+            /* Ensure sections are above background elements */
+        }
 
- .section-content h2 {
- font-family: 'Pacifico', cursive;
- /* Keep decorative font for headings */
- color: #ff69b4;
- /* Match theme color */
- text-align: center;
- margin-bottom: 30px;
- font-size: 2.5rem;
- }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
- .section-content p {
- line-height: 1.7;
- /* Better readability */
- font-size: 1.1rem;
- color: #444;
- /* Slightly lighter than pure black */
- }
+        .section-content {
+            max-width: 800px;
+            /* Slightly narrower for better readability */
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.18);
+            /* Slightly more opaque */
+            padding: 40px;
+            border-radius: 25px;
+            /* Consistent rounding */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            /* Softer shadow */
+            color: #333;
+            /* Darker text for readability */
+            font-family: 'Arial', sans-serif;
+            /* Standard font for content */
+        }
 
- /* Timeline Animation */
- .timeline-item {
- margin: 30px 0;
- /* Reduced margin */
- padding: 20px;
- padding-left: 30px;
- /* More space for line */
- border-left: 4px solid #ff85c8;
- /* Thicker, lighter border */
- position: relative;
- /* For pseudo-element */
- transform: translateX(-30px);
- opacity: 0;
- transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
- /* Smoother transition */
- }
+        .section-content h2 {
+            font-family: 'Pacifico', cursive;
+            /* Keep decorative font for headings */
+            color: #ff69b4;
+            /* Match theme color */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
 
- .timeline-item::before {
- /* Add a circle marker */
- content: '';
- position: absolute;
- left: -12px;
- /* Position over the border line */
- top: 20px;
- /* Align with text */
- width: 20px;
- height: 20px;
- background-color: #ff85c8;
- border: 3px solid white;
- border-radius: 50%;
- z-index: 1;
- }
+        .section-content p {
+            line-height: 1.7;
+            /* Better readability */
+            font-size: 1.1rem;
+            color: #444;
+            /* Slightly lighter than pure black */
+        }
 
- .timeline-item.animate {
- transform: translateX(0);
- opacity: 1;
- }
+        /* Timeline Animation */
+        .timeline-item {
+            margin: 30px 0;
+            /* Reduced margin */
+            padding: 20px;
+            padding-left: 30px;
+            /* More space for line */
+            border-left: 4px solid #ff85c8;
+            /* Thicker, lighter border */
+            position: relative;
+            /* For pseudo-element */
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Smoother transition */
+        }
 
- /* Photo Grid */
- .photo-grid {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
- /* Smaller min size */
- gap: 15px;
- /* Reduced gap */
- margin: 40px 0;
- align-items: center;
- /* Align items vertically */
- }
+        .timeline-item::before {
+            /* Add a circle marker */
+            content: '';
+            position: absolute;
+            left: -12px;
+            /* Position over the border line */
+            top: 20px;
+            /* Align with text */
+            width: 20px;
+            height: 20px;
+            background-color: #ff85c8;
+            border: 3px solid white;
+            border-radius: 50%;
+            z-index: 1;
+        }
 
- .photo-item {
- border-radius: 15px;
- overflow: hidden;
- transition: all 0.3s ease;
- width: 100%;
- /* Ensure items fill grid cells */
- height: auto;
- /* Maintain aspect ratio */
- display: block;
- /* Remove extra space below images/videos */
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
- }
+        .timeline-item.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
 
- .photo-item:hover {
- transform: scale(1.05);
- /* Keep hover effect */
- box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
- }
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* Smaller min size */
+            gap: 15px;
+            /* Reduced gap */
+            margin: 40px 0;
+            align-items: center;
+            /* Align items vertically */
+        }
 
- .photo-grid p {
- /* Style paragraph within the grid */
- grid-column: 1 / -1;
- /* Make paragraph span full width if needed */
- text-align: center;
- margin-top: 20px;
- }
+        .photo-item {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+            /* Ensure items fill grid cells */
+            height: auto;
+            /* Maintain aspect ratio */
+            display: block;
+            /* Remove extra space below images/videos */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
- /* Dreams Section */
- .dreams-container {
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- gap: 25px;
- /* Slightly reduced gap */
- }
+        .photo-item:hover {
+            transform: scale(1.05);
+            /* Keep hover effect */
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+        }
 
- .dream-card {
- width: clamp(250px, 45%, 300px);
- /* Responsive width */
- padding: 25px;
- background: rgba(255, 255, 255, 0.25);
- /* Slightly more opaque */
- border-radius: 20px;
- transform: rotate(-1deg);
- /* Less rotation */
- transition: all 0.3s ease;
- box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
- }
+        .photo-grid p {
+            /* Style paragraph within the grid */
+            grid-column: 1 / -1;
+            /* Make paragraph span full width if needed */
+            text-align: center;
+            margin-top: 20px;
+        }
 
- .dream-card h3 {
- font-family: 'Pacifico', cursive;
- color: #ff69b4;
- margin-bottom: 15px;
- text-align: center;
- }
+        /* Dreams Section */
+        .dreams-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            /* Slightly reduced gap */
+        }
 
- .dream-card:nth-child(even) {
- transform: rotate(1deg);
- /* Less rotation */
- }
+        .dream-card {
+            width: clamp(250px, 45%, 300px);
+            /* Responsive width */
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.25);
+            /* Slightly more opaque */
+            border-radius: 20px;
+            transform: rotate(-1deg);
+            /* Less rotation */
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
 
- .dream-card:hover {
- transform: rotate(0) scale(1.03);
- /* Subtle scale */
- box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
- }
+        .dream-card h3 {
+            font-family: 'Pacifico', cursive;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            text-align: center;
+        }
 
- /* --- NEW Confetti Styling --- */
- .confetti {
- position: fixed;
- width: 10px;
- /* Size from example */
- height: 10px;
- /* Size from example */
- background: white;
- /* Base color (JS overrides) */
- /* animation property will be set by JS, but uses confettiFall name */
- animation: confettiFall linear forwards;
- pointer-events: none;
- /* Prevent interaction */
- /* Ensure confetti is on top */
- }
+        .dream-card:nth-child(even) {
+            transform: rotate(1deg);
+            /* Less rotation */
+        }
 
- /* --- NEW Confetti Animation --- */
- @keyframes confettiFall {
- 0% {
- transform: translateY(-100vh) rotate(0deg);
- /* Start above screen */
- }
+        .dream-card:hover {
+            transform: rotate(0) scale(1.03);
+            /* Subtle scale */
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+        }
 
- 100% {
- transform: translateY(100vh) rotate(360deg);
- /* Fall below screen, rotate */
- }
- }
+        /* --- NEW Confetti Styling --- */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            /* Size from example */
+            height: 10px;
+            /* Size from example */
+            background: white;
+            /* Base color (JS overrides) */
+            /* animation property will be set by JS, but uses confettiFall name */
+            animation: confettiFall linear forwards;
+            pointer-events: none;
+            /* Prevent interaction */
+            /* Ensure confetti is on top */
+        }
 
- /* Audio Player Styling */
- audio {
- display: block;
- margin: 40px auto 20px;
- /* Center and add margin */
- max-width: 90%;
- /* Prevent overflow */
- border-radius: 25px;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
- }
- </style>
- <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        /* --- NEW Confetti Animation --- */
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                /* Start above screen */
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                /* Fall below screen, rotate */
+            }
+        }
+
+        /* Audio Player Styling */
+        audio {
+            display: block;
+            margin: 40px auto 20px;
+            /* Center and add margin */
+            max-width: 90%;
+            /* Prevent overflow */
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
- <div class="glitter-bg"></div>
+    <div class="glitter-bg"></div>
 
- <div class="bubble" style="width: 100px; height: 100px; top: 15%; left: 8%; animation-duration: 9s;"></div>
- <div class="bubble" style="width: 60px; height: 60px; top: 70%; right: 12%; animation-duration: 7s; animation-delay: 1s;"></div>
- <div class="bubble" style="width: 40px; height: 40px; top: 40%; left: 20%; animation-duration: 10s;"></div>
- <div class="heart" style="font-size:40px; top:25%; right:10%; color: #ff69b4;">💖</div>
- <header id="abcd">
- <h1>Happy Birthday, Kaneez! 🌸</h1>
- <h3>صفحة بسيطة لصديقة تستحق أن تبتسم في يومها الخاص 😊🎉 </h3>
- <button class="btn-glow">Start Magic ✨</button>
- <div class="confetti"></div>
- </header>
+    <div class="bubble" style="width: 100px; height: 100px; top: 15%; left: 8%; animation-duration: 9s;"></div>
+    <div class="bubble"
+        style="width: 60px; height: 60px; top: 70%; right: 12%; animation-duration: 7s; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; top: 40%; left: 20%; animation-duration: 10s;"></div>
+    <div class="heart" style="font-size:40px; top:25%; right:10%; color: #ff69b4;">💖</div>
+    <header id="abcd">
+        <h1>Happy Birthday, Kaneez! 🌸</h1>
+        <h3>صفحة بسيطة لصديقة تستحق أن تبتسم في يومها الخاص 😊🎉 </h3>
+        <button class="btn-glow">Start Magic ✨</button>
+        <div class="confetti"></div>
+    </header>
 
- <div class="wave-divider">
- <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
- <path
- d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
- </path>
- </svg>
- </div>
+    <div class="wave-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
+            </path>
+        </svg>
+    </div>
 
- <section id="about">
- <div class="section-content">
- <h2>📍 How We Met</h2>
- <div class="timeline-item">
- <p>We first met on October 14, 2024 in the chemistry lab 🧪.
- That day, we didn’t really talk — just exchanged a glance 😅. I was talking to Vaishnavi about lab
- stuff, and Kaneez was standing there quietly. Nothing crazy happened, but yeah… that’s where it all
- started.</p>
- </div>
- </div>
- </section>
+    <section id="about">
+        <div class="section-content">
+            <h2>📍 How We Met</h2>
+            <div class="timeline-item">
+                <p>We first met on October 14, 2024 in the chemistry lab 🧪.
+                    That day, we didn’t really talk — just exchanged a glance 😅. I was talking to Vaishnavi about lab
+                    stuff, and Kaneez was standing there quietly. Nothing crazy happened, but yeah… that’s where it all
+                    started.</p>
+            </div>
+        </div>
+    </section>
 
- <section id="kaneez-is">
- <div class="section-content">
- <h2>😄 Who Kaneez Is</h2>
- <div class="timeline-item">
- <p>She’s a chill, fun person who laughs easily and enjoys small things — like pani puri 🌮💦 and aaloo
- 🥔.
- She’s the kind of friend who listens, jokes around, and somehow balances being serious and silly at
- the same time 😌💬..</p>
- </div>
- </div>
- </section>
+    <section id="kaneez-is">
+        <div class="section-content">
+            <h2>😄 Who Kaneez Is</h2>
+            <div class="timeline-item">
+                <p>She’s a chill, fun person who laughs easily and enjoys small things — like pani puri 🌮💦 and aaloo
+                    🥔.
+                    She’s the kind of friend who listens, jokes around, and somehow balances being serious and silly at
+                    the same time 😌💬..</p>
+            </div>
+        </div>
+    </section>
 
- <section id="kaneez-life">
- <div class="section-content">
- <h2>🏠 A Bit About Her Life</h2>
- <div class="timeline-item">
- <p>She used to live in Ambala Cantt 🏡 and now lives in Lucknow Cantt.
- Her life has that military vibe — which is kinda cool.
- Also, she had a crush on a football guy from Delhi Cantt once 😅⚽.
- Now, her current crush is Alok Pathak – BCA 3rd year + NCC cadet, and yes… she calls him Aloo 🥔😂.
- Fitting, right?</p>
- </div>
- </div>
- </section>
+    <section id="kaneez-life">
+        <div class="section-content">
+            <h2>🏠 A Bit About Her Life</h2>
+            <div class="timeline-item">
+                <p>She used to live in Ambala Cantt 🏡 and now lives in Lucknow Cantt.
+                    Her life has that military vibe — which is kinda cool.
+                    Also, she had a crush on a football guy from Delhi Cantt once 😅⚽.
+                    Now, her current crush is Alok Pathak – BCA 3rd year + NCC cadet, and yes… she calls him Aloo 🥔😂.
+                    Fitting, right?</p>
+            </div>
+        </div>
+    </section>
 
- <section id="father-story">
- <div class="section-content">
- <h2>🪖 Her Dad’s Story</h2>
- <div class="timeline-item">
- <p>Her dad’s in the Indian Army 🇮🇳.
- Once, there was a serious accident where 15–20 trucks fell into a gorge 😨.
- His truck was hanging on the edge. He used his service gun 🔫 to break the mirror and get out.
- For 2 days, they thought he might not have made it… his ID card was found in the wreck.
- But then — a call came: "I’m safe." 📞
- That story really stayed with her. Makes sense why she’s so strong emotionally.</p>
- </div>
- </div>
- </section>
+    <section id="father-story">
+        <div class="section-content">
+            <h2>🪖 Her Dad’s Story</h2>
+            <div class="timeline-item">
+                <p>Her dad’s in the Indian Army 🇮🇳.
+                    Once, there was a serious accident where 15–20 trucks fell into a gorge 😨.
+                    His truck was hanging on the edge. He used his service gun 🔫 to break the mirror and get out.
+                    For 2 days, they thought he might not have made it… his ID card was found in the wreck.
+                    But then — a call came: "I’m safe." 📞
+                    That story really stayed with her. Makes sense why she’s so strong emotionally.</p>
+            </div>
+        </div>
+    </section>
 
- <section id="you-me">
- <div class="section-content">
- <h2>👯 Us — Just Friends</h2>
- <div class="photo-grid">
- <img src="1.png" class="photo-item" alt="Memory 1"
- onerror="this.src='https : //placehold.co/300x200/cccccc/ffffff?text=Image+Not+Found'; this.onerror=null;">
- <video class="photo-item" height="200" controls
- poster="https://placehold.co/300x200/dda0dd/ffffff?text=Video+Memory" alt="Memory Video">
- <source src="v.mp4" type="video/mp4">
- Your browser does not support the video tag.
- </video>
- <img src="2.png" class="photo-item" alt="Memory 2"
- onerror="this.src='https: //placehold.co/300x200/cccccc/ffffff?text=Image+Not+Found'; this.onerror=null;">
+    <section id="you-me">
+        <div class="section-content">
+            <h2>👯 Us — Just Friends</h2>
+            <div class="photo-grid">
+                <img src="1.png" class="photo-item" alt="Memory 1"
+                    onerror="this.src='https : //placehold.co/300x200/cccccc/ffffff?text=Image+Not+Found'; this.onerror=null;">
+                <video class="photo-item" height="200" controls
+                    poster="https://placehold.co/300x200/dda0dd/ffffff?text=Video+Memory" alt="Memory Video">
+                    <source src="v.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img src="2.png" class="photo-item" alt="Memory 2"
+                    onerror="this.src='https: //placehold.co/300x200/cccccc/ffffff?text=Image+Not+Found'; this.onerror=null;">
 
- <p>From a random lab class to now, we’ve had some good convos, laughs, and inside jokes (mostly about
- Aloo and pani puri) 😄🥔.
- We’re just normal friends, but it’s a cool bond.
- Not super dramatic, just real.
- Happy to have her as a friend 💬✨</p>
- </div>
- </div>
- </section>
+                <p>From a random lab class to now, we’ve had some good convos, laughs, and inside jokes (mostly about
+                    Aloo and pani puri) 😄🥔.
+                    We’re just normal friends, but it’s a cool bond.
+                    Not super dramatic, just real.
+                    Happy to have her as a friend 💬✨</p>
+            </div>
+        </div>
+    </section>
 
- <section id="dreams-goals">
- <div class="section-content">
- <h2>🎯 What She Wants</h2>
- <div class="dreams-container">
- <div class="dream-card">
- <h3>Join the Army</h3>
- <p>She wants to join the Indian Army at a good rank someday 💪.
- Already in NCC, and she even tells me to try it too 😂.
- She’s serious about it and honestly, I hope she makes it.</p>
- </div>
- <div class="dream-card">
- <h3>Future Plans</h3>
- <p>Beyond the army, she dreams of exploring new places, maybe learning a new skill, and definitely
- eating more good food! Simple joys matter most. ✨</p>
- </div>
- </div>
- <audio controls autoplay loop>
- 
-  <source src="happy.mp3" type="audio/mpeg">
- Your browser does not support the audio element.
- </audio>
-  
- </div>
- </section>
+    <section id="dreams-goals">
+        <div class="section-content">
+            <h2>🎯 What She Wants</h2>
+            <div class="dreams-container">
+                <div class="dream-card">
+                    <h3>Join the Army</h3>
+                    <p>She wants to join the Indian Army at a good rank someday 💪.
+                        Already in NCC, and she even tells me to try it too 😂.
+                        She’s serious about it and honestly, I hope she makes it.</p>
+                </div>
+                <div class="dream-card">
+                    <h3>Future Plans</h3>
+                    <p>Beyond the army, she dreams of exploring new places, maybe learning a new skill, and definitely
+                        eating more good food! Simple joys matter most. ✨</p>
+                </div>
+            </div>
+            <audio controls autoplay loop>
+                <source src="happy.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            </div>
+            
+    </section>
 
- <script>
- // --- NEW Confetti Function (from user example) ---
- function createConfetti() {
- // Check if body exists
- const confettiContainer = document.getElementById("abcd");
- if (!confettiContainer) return;
+    <script>
+        // --- NEW Confetti Function (from user example) ---
+        function createConfetti() {
+            // Check if body exists
+            const confettiContainer = document.getElementById("abcd");
+            if (!confettiContainer) return;
 
- // Create 100 confetti pieces
- for (let i = 0; i < 100; i++) {
- // Create the confetti element
- const confetti = document.createElement('div');
- // Assign the class for styling and base animation
- confetti.className = 'confetti';
+            // Create 100 confetti pieces
+            for (let i = 0; i < 100; i++) {
+                // Create the confetti element
+                const confetti = document.createElement('div');
+                // Assign the class for styling and base animation
+                confetti.className = 'confetti';
 
- // Set random horizontal position
- confetti.style.left = Math.random() * 100 + 'vw';
- // Set random background color (HSL format)
- confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
- // Set random animation duration (between 2 and 5 seconds)
- const duration = Math.random() * 3 + 2;
- confetti.style.animationDuration = duration + 's';
- // Explicitly set animation name (matches CSS @keyframes)
- confetti.style.animationName = 'confettiFall';
- // Z-index is set in CSS for .confetti class
+                // Set random horizontal position
+                confetti.style.left = Math.random() * 100 + 'vw';
+                // Set random background color (HSL format)
+                confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                // Set random animation duration (between 2 and 5 seconds)
+                const duration = Math.random() * 3 + 2;
+                confetti.style.animationDuration = duration + 's';
+                // Explicitly set animation name (matches CSS @keyframes)
+                confetti.style.animationName = 'confettiFall';
+                // Z-index is set in CSS for .confetti class
 
- // Add the confetti to the page
- confettiContainer.appendChild(confetti);
+                // Add the confetti to the page
+                confettiContainer.appendChild(confetti);
 
- // Remove the confetti element after its animation duration finishes + buffer
- // This ensures it finishes falling before removal
- setTimeout(() => {
- if (confetti.parentNode) {
- confetti.parentNode.removeChild(confetti);
- }
- }, duration * 1000 + 500); // Use the animation duration for timeout + 0.5s buffer
- }
- }
+                // Remove the confetti element after its animation duration finishes + buffer
+                // This ensures it finishes falling before removal
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, duration * 1000 + 500); // Use the animation duration for timeout + 0.5s buffer
+            }
+        }
 
- // --- Floating Hearts Function (Original Style) ---
- // --- Floating Hearts Function (Original Style) ---
-function createHearts() {
- const heartContainer = document.body;
- if (!heartContainer) return;
+        // --- Floating Hearts Function (Original Style) ---
+        // --- Floating Hearts Function (Original Style) ---
+        function createHearts() {
+            const heartContainer = document.body;
+            if (!heartContainer) return;
 
- const heart = document.createElement('div');
- heart.className = 'heart'; // Apply the .heart class from CSS
+            const heart = document.createElement('div');
+            heart.className = 'heart'; // Apply the .heart class from CSS
 
- // Set dynamic properties
- heart.style.left = Math.random() * 95 + 'vw'; // Random horizontal start
- heart.style.fontSize = Math.random() * 25 + 5 + 'px'; // Random size (15px to 40px)
- heart.textContent = ['💖', '💝', '🐹','❤️'][Math.floor(Math.random() * 4)]; // Heart emojis
- heart.style.zIndex = Math.floor(Math.random() * 5) + 1; // Random z-index (1-5) to vary overlap
- heart.style.top = '100vh'; // Start from the bottom of the viewport
+            // Set dynamic properties
+            heart.style.left = Math.random() * 95 + 'vw'; // Random horizontal start
+            heart.style.fontSize = Math.random() * 25 + 5 + 'px'; // Random size (15px to 40px)
+            heart.textContent = ['💖', '💝', '🐹', '❤️'][Math.floor(Math.random() * 4)]; // Heart emojis
+            heart.style.zIndex = Math.floor(Math.random() * 5) + 1; // Random z-index (1-5) to vary overlap
+            heart.style.top = '100vh'; // Start from the bottom of the viewport
 
- // Animation ('float') is applied via the .heart class in CSS
- // Note: The CSS animation 'float' should handle moving it upwards
+            // Animation ('float') is applied via the .heart class in CSS
+            // Note: The CSS animation 'float' should handle moving it upwards
 
- heartContainer.appendChild(heart);
+            heartContainer.appendChild(heart);
 
- // Remove the heart after its animation cycle (approx 6s) + buffer
- setTimeout(() => {
- if (heart.parentNode) {
- heart.parentNode.removeChild(heart);
- }
- }, 7000); // Remove after 7 seconds (matches the 6s animation + buffer)
-}
+            // Remove the heart after its animation cycle (approx 6s) + buffer
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 7000); // Remove after 7 seconds (matches the 6s animation + buffer)
+        }
 
-// Call the createHearts function at regular intervals to generate hearts automatically.
-// Adjust the interval (150ms here) to control the density of hearts.
-// A shorter interval creates more hearts, a longer interval creates fewer.
-setInterval(createHearts, 150);
+        // Call the createHearts function at regular intervals to generate hearts automatically.
+        // Adjust the interval (150ms here) to control the density of hearts.
+        // A shorter interval creates more hearts, a longer interval creates fewer.
+        setInterval(createHearts, 150);
 
- // --- Scroll Animations for Sections and Timeline Items ---
- const observer = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
- if (entry.isIntersecting) {
- entry.target.classList.add('visible');
+        // --- Scroll Animations for Sections and Timeline Items ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
 
- // Animate timeline items within the section
- const timelineItems = entry.target.querySelectorAll('.timeline-item');
- timelineItems.forEach((item, index) => {
- if (!item.classList.contains('animate')) {
- // Stagger the animation start time
- setTimeout(() => item.classList.add('animate'), index * 150);
- }
- });
+                    // Animate timeline items within the section
+                    const timelineItems = entry.target.querySelectorAll('.timeline-item');
+                    timelineItems.forEach((item, index) => {
+                        if (!item.classList.contains('animate')) {
+                            // Stagger the animation start time
+                            setTimeout(() => item.classList.add('animate'), index * 150);
+                        }
+                    });
 
- } else {
- // Optional: Remove classes if element scrolls out of view
- // entry.target.classList.remove('visible');
- // const timelineItems = entry.target.querySelectorAll('.timeline-item');
- // timelineItems.forEach(item => item.classList.remove('animate'));
- }
- });
- }, {
- threshold: 0.15
- }); // Trigger when 15% of the section is visible
+                } else {
+                    // Optional: Remove classes if element scrolls out of view
+                    // entry.target.classList.remove('visible');
+                    // const timelineItems = entry.target.querySelectorAll('.timeline-item');
+                    // timelineItems.forEach(item => item.classList.remove('animate'));
+                }
+            });
+        }, {
+            threshold: 0.15
+        }); // Trigger when 15% of the section is visible
 
- // Observe all sections
- document.querySelectorAll('section').forEach(section => {
- if (section) observer.observe(section);
- });
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            if (section) observer.observe(section);
+        });
 
 
- // --- Event Listener for the Button ---
- let heartsInterval = null; // Variable to hold the interval ID
+        // --- Event Listener for the Button ---
+        let heartsInterval = null; // Variable to hold the interval ID
 
- const magicButton = document.querySelector('.btn-glow'); // Select the button by its class
+        const magicButton = document.querySelector('.btn-glow'); // Select the button by its class
 
- if (magicButton) {
- magicButton.addEventListener('click', () => {
- // Start confetti blast
- createConfetti();
+        if (magicButton) {
+            magicButton.addEventListener('click', () => {
+                // Start confetti blast
+                createConfetti();
 
- // Start continuous heart creation if not already started
- 
+                // Start continuous heart creation if not already started
 
- // Removed the scrolling code
- // const firstSection = document.getElementById('about');
- // if (firstSection) {
- // if ('scrollBehavior' in document.documentElement.style) {
- // firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
- // } else {
- // window.scrollTo(0, firstSection.offsetTop); // Fallback
- // }
- // }
- });
- } else {
- console.error("Magic button '.btn-glow' not found.");
- }
- </script>
+
+                // Removed the scrolling code
+                // const firstSection = document.getElementById('about');
+                // if (firstSection) {
+                // if ('scrollBehavior' in document.documentElement.style) {
+                // firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // } else {
+                // window.scrollTo(0, firstSection.offsetTop); // Fallback
+                // }
+                // }
+            });
+        } else {
+            console.error("Magic button '.btn-glow' not found.");
+        }
+    </script>
 </body>
 
 </html>
